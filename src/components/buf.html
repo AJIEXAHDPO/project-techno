@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  .promo-text+.promo-link
+  <script type="text/javascript" charset="utf-8">
+    //для выполнения вставить в консоль браузера ctrl + shift + c
+    //Чтобы получить нужную высоту пришлось добавлять асинхронность
+    (async () => {
+      const pathToImage = "https://img.freepik.com/free-photo/majestic-big-cats-in-the-wild-stare-generated-by-ai_188544-35619.jpg?w=1060&t=st=1695587188~exp=1695587788~hmac=deaf3be99c33363d2c8d3a9c3818dda32f6e6bc8d3ce76b025abcfd731954aef";
+      
+      const getProportions = (src) => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = ()=> resolve(img.height/img.width);
+          img.src = src;
+          //img.onerror = reject;
+        });
+      }
+      
+      const foo= async (pathToImage, width) => {
+            const proportions = await getProportions(pathToImage);
+            let height = width * proportions;
+            let top = (window.innerHeight - height)/2;
+            let left = (window.innerWidth - width)/2;
+            return new Promise((resolve) => resolve(
+              ()=> {
+                const newWidth= width-100;
+                const newHeight = height-100*proportions;
+                left+= (width-newWidth)/2;
+                top+= (height-newHeight)/2;
+                width = newWidth;
+                height = newHeight;
+                
+                document.write(
+                  `<img src=${pathToImage} 
+                    style="width: ${width}px; 
+                    position: absolute; 
+                    left: ${left}px; 
+                    top: ${top}px"/>`
+                  );
+              }));
+          }
+      const createImage = await foo(pathToImage, 540);
+      createImage();
+      createImage();
+      createImage();
+      createImage();
+    })();
+    //Завтра пришлю, arguments и обработку событий.
+    //С уважением, А.
+  </script>
+
+</body>
+</html>
