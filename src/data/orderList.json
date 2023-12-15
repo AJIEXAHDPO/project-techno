@@ -1,0 +1,28 @@
+[{
+  "id": 1,
+  "name": "Laptop Macbook Air",
+  "img": "air13.jpg",
+  "price": 220,
+  "quantity": 2
+},
+  {
+    "id": 2,
+    "name": "Optical mouse Razer",
+    "img": "bd9d7ae69542c1e44e2a2be0710bd715.jpg",
+    "price": 220,
+    "quantity": 2
+  },
+  {
+    "id": 3,
+    "name": "Laptop HP Silver",
+    "img": "6219718788.jpg",
+    "price": 220,
+    "quantity": 2
+  },
+  {
+    "id": 4,
+    "name": "Laptop MSI RedDragon",
+    "img": "6470407044.jpg",
+    "price": 220,
+    "quantity": 2
+  }]

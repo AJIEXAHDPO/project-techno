@@ -1,0 +1,17 @@
+module.exports = [
+  {name: "LG", src: require("../img/lg.png"),},
+  {name: "AMD", src: require("../img/amd.png"),},
+  {name: "DELL", src: require("../img/dell.png"),},
+  {name: "PHILIPS", src: require("../img/philips.png"),},
+  {name: "Apple", src: require("../img/apple.png"),},
+  {name: "SAMSUNG", src: require("../img/samsung.png"),},
+  {name: "ASUS", src: require("../img/asus.png"),},
+  {name: "ACER", src: require("../img/acer.png"),},
+  {name: "Google", src: require("../img/google.png"),},
+  {name: "MSI", src: require("../img/msi.png"),},
+  {name: "GIGABYTE", src: require("../img/gigabyte.png"),},
+  {name: "HP", src: require("../img/hp.png"),},
+  {name: "INTEL", src: require("../img/intel.png"),},
+  {name: "SONY", src: require("../img/sony.png"),},
+  {name: "NVidia", src: require("../img/nvidia.png"),},
+];
