@@ -1,0 +1,19 @@
+{
+    "name": "ajiexahdpo/project-techno",
+    "description": "backend for project-techno",
+    "type": "project",
+    "require": {
+        "funct/funct": "^1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ajiexahdpo\\ProjectTechno\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "AJIEXAHDPO",
+            "email": "alesha.iv03@gmail.com"
+        }
+    ]
+}
