@@ -1,13 +1,10 @@
 import {useState} from "react";
-import ProductInCart from "./ProductInSearch";
+import ProductInSearch from "./ProductInSearch";
+import {importImages} from "@functions";
 
-const OrderList = require("@data/orderList.json");
+const orderList = require("@data/orderList.json");
 
-const imageImports = {};
-OrderList.forEach((elem)=> {
-  imageImports[elem.img] = require(`../../../img/${elem.img}`);
-});
-
+const imageImports = importImages(orderList);
 
 const SearchPanel = (props)=> {
   const [inputText, setInputText] = useState("");
@@ -15,7 +12,7 @@ const SearchPanel = (props)=> {
   const filterResults = (list, template)=> {
     const result = list.filter(
       (elem)=> elem.name.indexOf(template) > -1
-    ).map((elem)=> <ProductInCart 
+    ).map((elem)=> <ProductInSearch 
         id={elem.id}
         price={elem.price} 
         name={elem.name}
@@ -26,7 +23,7 @@ const SearchPanel = (props)=> {
     return result;
   }
   
-  const results = filterResults(OrderList, inputText);
+  const results = filterResults(orderList, inputText);
   
   const searchChangeHandler = (e)=> {
     setInputText(e.target.value);
