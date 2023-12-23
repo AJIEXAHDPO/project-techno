@@ -6,6 +6,12 @@
             "name": "AJIEXAHDPO",
             "email": "alesha.iv03@gmail.com"
         }
+            
     ],
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "\\api": ""
+        }
+    }
 }
