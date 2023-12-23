@@ -21,8 +21,15 @@ final class Database {
         if ($params === false)
             throw new \Exception("Invalid DB configuration file");
 
-        [$host, $db, $user, $pswd] = $params;
-        static::$connection = new PDO("host=$host,db=$db", $user, $pswd);
+        [
+            'host' => $host, 
+            'database' =>  $db,
+            'user' => $user, 
+            'pswd'=> $pswd
+        ] = $params;
+        
+        $PDO = new \PDO("mysql:host=$host,db=$db", $user, $pswd);
+        return $PDO;
     }
 
     public function query ($data) {
