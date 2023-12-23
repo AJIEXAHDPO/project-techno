@@ -1,6 +1,8 @@
 <?php
 
-#namespace 
+namespace app\Database;
+
+use mysqli;
 
 $host = "127.0.0.1";
 $user = "root";
