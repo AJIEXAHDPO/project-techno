@@ -1,12 +1,9 @@
 import Menu from "@components/UI/Menu";
 import SearchPanel from "@components/UI/Search/SearchPanel";
-import MainPage from "@components/MainPage";
-import CartPage from "@components/CartPage";
-import CatalogPage from "@components/CatalogPage";
 import {useState} from "react";
 import closeIcon from "@images/Close.svg";
 
-function AppHeader({onClick}) {
+function AppHeader() {
   const [menuVisability, setMenuVisability] = useState(false);
   const [searchEnabled, setSearchEnabled] = useState(false);
   
@@ -31,21 +28,17 @@ function AppHeader({onClick}) {
     </button>
   </SearchPanel>
   
-  const setPageDisplaying = (page) => {
-    onClick(page)
-  }
-  
   return (
     <>
       <header>
         <div className="container">
           <div className="header-section">
             <button className="menu-bttn" onClick={()=>setMenuVisability(!menuVisability)}></button>
-            <button className="store-logo" onClick={()=> setPageDisplaying(<MainPage />)}>TECHNO</button>
+            <a className="store-logo" href="/">TECHNO</a>
           </div>
           <div className="header-section">
-            <div className="standard-link" onClick={()=> setPageDisplaying(<CatalogPage />)}>Discounts</div>
-            <div className="standard-link" onClick={()=> setPageDisplaying(<CatalogPage />)}>Catalog</div>
+            <a className="standard-link" href="/catalog">Discounts</a>
+            <a className="standard-link" href="/catalog">Catalog</a>
             <div className="standard-link">PC Builder</div>
             <input
               type="search"
@@ -57,7 +50,7 @@ function AppHeader({onClick}) {
             />
             <button className="search-bttn"></button>
             <button className="login"><div>{(currentUser.isLoggedIn ?? false)?"Profle":"Log in"}</div></button>
-            <button className="header-cart" onClick={()=> setPageDisplaying(<CartPage />)}><div>Cart</div></button>
+            <a className="header-cart" href="cart"><div>Cart</div></a>
             <button className="options"></button>
           </div>
         </div>
