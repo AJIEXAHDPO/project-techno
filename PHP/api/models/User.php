@@ -18,5 +18,8 @@ class User {
         Authentication::Login
     }*/
     
-    /*public function */
+    /*public function getUserInfo() {
+        query("select * from user where id=$userid");
+    }*/
+        
 }
