@@ -1,30 +1,34 @@
 <?php
-namespace app\Models;
 
-class Category {
+namespace App\Models;
+
+use PDO;
+
+class Category
+{
+
     private $name;
     private $db;
 
-    public function __construct(String $name = "*", $db) {
+    public function __construct(String $name = 'laptops', $db)
+    {
         $this->db = $db;
-        $categories = $this->receiveCategories();
-
-        if (array_search($name, $categories) !== false)
+        if ($this->categoryExists($name))
             $this->name = $name;
-        else exit("Creation catalog failed: no such category in DB");
+        else exit("Catalog creation failed: no such category in DB\n");
     }
 
-    public function getFullList() : Array {
+    public function getFullList(): array
+    {
         $result = $this->db->query(
             "SELECT product.name, 
                     product.price, 
                     product.image 
                FROM product 
          INNER JOIN category ON category_id = category.id
-              WHERE category.name = '{$this->name}'");
-        
-        $rows = array_map(fn($row)=> $this->db->fetch_assoc($row), $result);
-        return $rows;
+              WHERE category.name = '{$this->name}'"
+        )->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
 
     /*public function getSearchProps() : Array {
@@ -33,9 +37,19 @@ class Category {
         return $result;
     }*/
 
-    public function receiveCategories() : Array {
-        $result = $this->db->query("SELECT `name` FROM category;");
-        $rows = array_map(fn($row)=> $this->db->fetch_assoc($row), $result);
-        return $rows;
+    public function receiveCategories(): array
+    {
+        $result = $this->db->query("SELECT `name` FROM category;")->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    private function categoryExists($name): bool
+    {
+        $categories = $this->receiveCategories();
+        $result = false;
+        foreach ($categories as $category) {
+            if ($category['name'] === $name) $result = true;
+        }
+        return $result;
     }
 }
