@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Models;
-
+use Core\Model;
 use PDO;
 
-class Category
+class Category extends Model
 {
 
     private $name;
@@ -31,10 +31,15 @@ class Category
         return $result;
     }
 
-    /*public function getSearchProps() : Array {
-        
+    /*public function getSearchProps() : Array 
+    {
         $result = 
         return $result;
+    }
+    
+    public function search() : Array 
+    {
+        
     }*/
 
     public function receiveCategories(): array
