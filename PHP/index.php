@@ -2,6 +2,7 @@
 require 'vendor/autoload.php';
 use App\Database\Connection;
 use App\Models\Category;
+use Core\Router;
 
 $categ_name="laptops";
 
@@ -14,6 +15,8 @@ try {
 
     $pdo = Connection::get()->connect();
     # echo "successfull connection\n";
+    $routes = array();
+    new Router($routes);
     $category = new Category($categ_name, $pdo);
 
     $jsonData = json_encode($category->getFullList());
