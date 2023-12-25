@@ -21,9 +21,10 @@ class Category extends Model
     public function getFullList(): array
     {
         $result = $this->db->query(
-            "SELECT product.name, 
+            "SELECT product.id,
+                    product.name, 
                     product.price, 
-                    product.image 
+                    product.img 
                FROM product 
          INNER JOIN category ON category_id = category.id
               WHERE category.name = '{$this->name}'"
