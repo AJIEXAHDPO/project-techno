@@ -12,6 +12,6 @@ class Router
     }
 
     public function addRoute($method, $path, $callback) {
-        
+        array_push($this->routes, new Route($method, $path, $callback));
     }
 }
