@@ -26,7 +26,7 @@ CREATE TABLE `category` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,6 +35,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1,'laptops'),(2,'phones'),(3,'cables and adapters'),(4,'computer mice'),(5,'keyboars');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,10 +105,11 @@ CREATE TABLE `product` (
   `price` int DEFAULT NULL,
   `quantity` int DEFAULT NULL,
   `category_id` int NOT NULL,
+  `img` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_product_category` (`category_id`),
   CONSTRAINT `fk_product_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -116,6 +118,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
+INSERT INTO `product` VALUES (1,'Adapter usb-c to usb-a',7,200,3,'14hq.jpeg'),(2,'Optical Mouse Razer deathadder',220,200,4,'bd9d7ae69542c1e44e2a2be0710bd715.jpg'),(3,'Laptop Dell u34678ME i7 12700U',7500,200,1,'belmsru_ytntbi2rsffedylnym8b_1643617906.jpg'),(4,'Laptop HP Silver',1500,200,1,'6219718788.jpg'),(5,'Laptop MSI RedDragon',1500,200,1,'6470407044.jpg'),(6,'Laptop MSI RedDragon',1500,200,1,'orig (1).jpeg'),(7,'Laptop Apple Mackbook Air13 Late 2020',1500,200,1,'msi_gp66_leopard_10ue_gp66_10ue_226xes_2.jpg'),(8,'Laptop Apple Mackbook Air13 Late 2020',1500,200,1,'img3.jpeg'),(9,'Laptop Apple Mackbook Air13 Late 2020',1500,200,1,'air13.jpg'),(10,'Laptop Apple Macbook Air A2337',2400,200,1,'1151249-7.jpg'),(11,'Laptop ASUS Vivobook 15 X1504ZA-BQ824',1200,200,1,'6219718788.jpg'),(12,'Laptop Lenovo IdeaPad Slim 3 15IAN8',440,200,1,'orig (2).jpeg'),(13,'Laptop ASUS Vivobook 17 M1702QA-AU082',670,200,1,'2_asusvivobook_prom580gdfi496t1.jpg'),(14,'Laptop Lenovo IdeaPad 4 15IGL05',440,200,1,'x332_trim.png'),(15,'Laptop MSI Prestige 15 A12UD-225RU',1200,200,1,'x332_trim.png');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -155,4 +158,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-12-23 20:33:09
+-- Dump completed on 2023-12-25 15:53:31
