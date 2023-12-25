@@ -10,4 +10,8 @@ class Router
     {
         
     }
+
+    public function addRoute($method, $path, $callback) {
+        
+    }
 }
