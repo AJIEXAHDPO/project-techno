@@ -15,11 +15,11 @@ try {
 
     $pdo = Connection::get()->connect();
     # echo "successfull connection\n";
-    $routes = array();
-    new Router($routes);
+
     $category = new Category($categ_name, $pdo);
 
     $jsonData = json_encode($category->getFullList());
+    # testing SQL querys
     echo $jsonData;
     # file_put_contents("productList.json", $jsonData);
 
@@ -27,3 +27,6 @@ try {
 catch (\PDOException $e) {
     echo $e->getMessage();
 }
+
+$routes = array();
+new Router($routes);
