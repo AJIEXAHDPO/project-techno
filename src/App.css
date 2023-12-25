@@ -97,13 +97,16 @@ header, .under-header-block {
   border: none;
   background-size: 20px;
   margin-left: 5px;
+  text-decoration: none;
 }
 
 .header-cart div,
 .login div{
   color: white;
   padding-top: 24px;
-  font-size: 14 px;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
 }
 
 .options {
@@ -189,6 +192,11 @@ header .standard-link {
   border: none;
   background-color: transparent;
   border-radius: 4px;
+  text-decoration: none;
+}
+
+.store-logo:hover {
+  color: #a7b2c7;
 }
 
 .promo {
