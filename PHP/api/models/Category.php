@@ -8,11 +8,10 @@ class Category extends Model
 {
 
     private $name;
-    private $db;
 
-    public function __construct(String $name = 'laptops', $db)
+    public function __construct(String $name = 'laptops')
     {
-        $this->db = $db;
+        $this->connectDB();
         if ($this->categoryExists($name))
             $this->name = $name;
         else exit("Catalog creation failed: no such category in DB\n");
