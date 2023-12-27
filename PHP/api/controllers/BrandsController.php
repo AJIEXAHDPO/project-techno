@@ -1,14 +1,20 @@
 <?php
-// BrandsController.php
-namespace App\Controller;
-use Core\Controller;
+
+namespace App\Controllers;
+
 use App\Models\Brands;
 
-class BrandsController extends Controller {
- private $brands;
- public function _construct () 
- {
-  $this->brands = new Brands ();
-  echo json_encode($this->brands->getFullList());
- }
+class BrandsController
+{
+    private $brands;
+    public function __construct()
+    {
+        $this->brands = new Brands();
+    }
+
+    public function get()
+    {
+        $jsonData = json_encode($this->brands->getFullList());
+        echo $jsonData;
+    }
 }

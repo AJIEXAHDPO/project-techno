@@ -2,7 +2,6 @@
 
 namespace App\Models;
 use Core\Model;
-use PDO;
 
 class Category extends Model
 {
@@ -27,7 +26,7 @@ class Category extends Model
                FROM product 
          INNER JOIN category ON category_id = category.id
               WHERE category.name = '{$this->name}'"
-        )->fetchAll(PDO::FETCH_ASSOC);
+        )->fetchAll(\PDO::FETCH_ASSOC);
         return $result;
     }
 
@@ -44,7 +43,7 @@ class Category extends Model
 
     public function receiveCategories(): array
     {
-        $result = $this->db->query("SELECT `name` FROM category;")->fetchAll(PDO::FETCH_ASSOC);
+        $result = $this->db->query("SELECT `name` FROM category;")->fetchAll(\PDO::FETCH_ASSOC);
         return $result;
     }
 

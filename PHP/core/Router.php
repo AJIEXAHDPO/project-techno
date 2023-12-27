@@ -1,7 +1,6 @@
 <?php
 
 namespace Core;
-use App\Controllers\CatalogController;
 
 class Router
 {
@@ -24,19 +23,21 @@ class Router
         }
     }
 
+    private function createController ($path) 
+    {
+        $result = 'App\\Controllers\\'. ucfirst($path . "Controller");
+        return $result;
+    }
+
     public function run()
     {
         $uri = $this->getURI();
-        $controllerObject = new CatalogController("laptops");
-        $controllerObject->get();
-        
-        foreach($this->routes as $uriPattern => $path)
+        foreach($this->routes as $path => $callback)
         {
-            if(preg_match("~$uriPattern~", $uri))
+            if(preg_match("/^$path/", $uri))
             {
-
-                
-                $controllerObject = new CatalogController("laptops");
+                $controller = $this->createController($path);
+                $controllerObject = new $controller();
                 $controllerObject->get();
                 break;
             }

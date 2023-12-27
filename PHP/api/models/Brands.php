@@ -6,7 +6,7 @@ use Core\Model;
 
 class Brands extends Model
 {
-    public function _construct()
+    public function __construct()
     {
         $this->connectDB();
     }
@@ -15,7 +15,7 @@ class Brands extends Model
     {
         $result = $this->db->query(
             "SELECT brand.id, brand.name, brand.img FROM brand"
-        )->fetchAll();
+        )->fetchAll(\PDO::FETCH_ASSOC);
         return $result;
     }
 }
