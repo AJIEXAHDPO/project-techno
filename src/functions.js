@@ -1,5 +1,5 @@
 const importImages = (list) => {
-  const placeholder = require("@images/14hq.jpeg");
+  const placeholder = require("@images/no_image.jpg");
   const imageImports = {};
 
       list.forEach((elem) => {
