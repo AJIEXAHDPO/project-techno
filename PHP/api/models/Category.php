@@ -30,6 +30,22 @@ class Category extends Model
         return $result;
     }
 
+    public function receiveCategories(): array
+    {
+        $result = $this->db->query("SELECT `name` FROM category;")->fetchAll(\PDO::FETCH_ASSOC);
+        return $result;
+    }
+    
+    private function categoryExists($name): bool
+    {
+        $categories = $this->receiveCategories();
+        $result = false;
+        foreach ($categories as $category) {
+            if ($category['name'] === $name) $result = true;
+        }
+        return $result;
+    }
+
     /*public function getSearchProps() : Array 
     {
         $result = 
@@ -40,20 +56,4 @@ class Category extends Model
     {
         
     }*/
-
-    public function receiveCategories(): array
-    {
-        $result = $this->db->query("SELECT `name` FROM category;")->fetchAll(\PDO::FETCH_ASSOC);
-        return $result;
-    }
-
-    private function categoryExists($name): bool
-    {
-        $categories = $this->receiveCategories();
-        $result = false;
-        foreach ($categories as $category) {
-            if ($category['name'] === $name) $result = true;
-        }
-        return $result;
-    }
 }
