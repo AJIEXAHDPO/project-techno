@@ -7,7 +7,6 @@ const imageImports = importImages(orderList);
 
 const CartPage = ()=> {
   const [total, setTotal] = useState(orderList.reduce((acc, elem)=>acc+elem.price*elem.quantity, 0));
-  //const [quantity, setQuantity] = useState(elem.quantity);
   return (
   <>
     <h1 className="container">Shopping cart</h1>
@@ -18,6 +17,8 @@ const CartPage = ()=> {
         quantity={elem.quantity}
         name={elem.name}
         img={imageImports[elem.img]}
+        total={total}
+        setTotal={setTotal}
       />
       )}
     </div>
