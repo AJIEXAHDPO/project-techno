@@ -87,6 +87,7 @@ header, .under-header-block {
 }
 
 .header-cart {
+  display: flex;
   width: 48px;
   height: 48px;
   background-image: url("./img/basket_button_header.svg");
@@ -97,7 +98,10 @@ header, .under-header-block {
   border: none;
   background-size: 20px;
   margin-left: 5px;
+  padding-top: 1px;
   text-decoration: none;
+  align-items: center;
+  justify-content: center;
 }
 
 .header-cart div,
@@ -124,7 +128,7 @@ header, .under-header-block {
 }
 
 .login {
-  width: aut;
+  width: auto;
   height: 48px;
   background-image: url("./img/Intersect.svg");
   background-position: center +7px;
@@ -213,14 +217,14 @@ header .standard-link {
   background-image: url('./img/promo2.png');
   height: 525px;
   background-repeat: no-repeat;
-  background-size: auto 100%;
+  background-size: 100% auto;
   color: #ffffff;
   font-size: 40px;
   background-position: center;
 }
 
 .promo:hover {
-  background-size: auto 120%;
+  background-size: 120% auto;
 }
 
 .promo-link {
