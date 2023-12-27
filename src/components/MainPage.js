@@ -1,9 +1,29 @@
 import ProductCard from "@components/UI/ProductCard";
-import * as brands from "@components/brands";
 import AdPoster from "@components/UI/AdPoster";
-import Container from "@components/UI/Container"
+import Container from "@components/UI/Container";
+import { importImages } from "@functions";
+import { useState, useEffect } from "react";
 
 function MainPage() {
+  const [brands, setBrands] = useState([]);
+  const [brandImports, setBrandImports] = useState([]);
+
+  useEffect(()=> {
+    fetch("http://localhost:8000/brands/", {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json; charset=UTF8",
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        setBrandImports(importImages(data));
+        setBrands(data);
+        console.log(data);
+      })
+    }, []);
+
   const discounts = [
     { id: 1, name: "Adapter usb-c to usb-a", price: 7, img: "14hq.jpeg" },
     { id: 2, name: "Optical Mouse Razer deathadder", price: 220, img: "bd9d7ae69542c1e44e2a2be0710bd715.jpg" },
@@ -23,28 +43,6 @@ function MainPage() {
     {id: "banner4", headerText: "MacBook Air", innerText: "Perfect sollution for designers",},
   ];
   
-  const Brands = () => brands.map(
-    (brand)=> <img className="logo" src={brand.src} alt={brand.name}></img>);
-
-  const DiscountsList = ()=> discounts.map(
-    (product)=> 
-      <ProductCard
-        id={product.id}
-        name={product.name}
-        price={product.price}
-        img={imageImports[product.img]}
-      />
-  );
-
-  const AdPosters = () => posters.map(
-    (banner)=> 
-      <AdPoster
-        id={banner.id}
-        headerText={banner.headerText}
-        innerText={banner.innerText}
-      />
-  );
-  
   return (
     <>
       <div className="promo">
@@ -56,20 +54,34 @@ function MainPage() {
         title="Daily discounts" 
         className="offers">
         <button className="back"></button>
-          <DiscountsList />
+        {discounts.map(
+          (product)=> 
+            <ProductCard
+              id={product.id}
+              name={product.name}
+              price={product.price}
+              img={imageImports[product.img]}
+            />)}
         <button className="forward"></button>
       </Container>
 
       <Container 
         className="banners"
         title="Companies we are working with">
-        <AdPosters />
+        {posters.map(
+          (banner)=> 
+            <AdPoster
+              id={banner.id}
+              headerText={banner.headerText}
+              innerText={banner.innerText}
+            />)}
       </Container>
 
       <Container 
         title="Companies we are working with" 
         className="logos">
-        <Brands />
+        {brands.map(
+          (brand)=> <img className="logo" src={brandImports[brand.img]} alt={brand.name}></img>)}
       </Container>
     </>
   );
