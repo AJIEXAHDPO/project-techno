@@ -1,0 +1,39 @@
+.product-prop {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: 292px;
+    padding-bottom: 23px;
+}
+
+.product-prop-name {
+    color: #777777;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    line-height: 18px;
+    position: relative;
+    white-space: nowrap;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.product-prop-name::after {
+    content: ".........................................................................";
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+}
+
+.product-prop-value {
+    color: #333333;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    line-height: 18px;
+    position: relative;
+    white-space: nowrap;
+    width: fit-content;
+}
