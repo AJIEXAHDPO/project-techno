@@ -287,6 +287,7 @@ h1.container {
   margin-bottom: 40px;
   box-shadow: 0;
   transition: box-shadow 0.4s ease-in-out;
+  text-decoration: none;
 }
 
 .product-card:hover {
@@ -415,6 +416,7 @@ h1.container {
 .price {
   align-self: flex-end;
   margin-top: 27px;
+  color: #222222;
 }
 
 .star {
@@ -975,6 +977,10 @@ h3.filter-point {
   height: 36px;
 }
 
+.menu-close-bttn:hover {
+  background-color: #f5f5f5;
+}
+
 .container.on-page {
   margin-bottom: 78px;
   margin-top: 40px;
@@ -989,6 +995,7 @@ h3.filter-point {
   margin-bottom: 20px;
   border-bottom: 1px solid #bbb;
   padding-bottom: 10px;
+  text-decoration: none;
 }
 
 .order-product-block {
@@ -1044,6 +1051,10 @@ h3.filter-point {
   background-size: contain;
 }
 
+.product-price {
+  color: #000000;
+}
+
 .order-totals h1 {
   margin-top: 0px;
 }
@@ -1069,14 +1080,22 @@ h3.filter-point {
 .search-panel {
   top: 150px;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
+  flex-wrap: nowrap;
   position: absolute;
   background: #fff;
   border-radius: 2px;
   padding-top: 10px;
   width: 500px;
+  height: 350px;
+  overflow: auto;
   padding: 50px 70px;
+  box-sizing: padding-box;
+}
+
+.search-panel .search-product-card:hover {
+  background-color: #f4f4f4;
+  background-origin: border-box;
 }
 
 .input-search {
@@ -1087,4 +1106,14 @@ h3.filter-point {
   margin: 0 auto 30px auto;
   border: none;
   background: #dbeaf2
+}
+
+.search-product-card {
+  height: max-content;
+  width: 100%;
+  border-bottom: 1px solid #bbb;
+  text-decoration: none;
+  padding: 15px 20px;
+  box-sizing: border-box;
+  align-items: center;
 }
