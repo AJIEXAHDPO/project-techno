@@ -1,6 +1,6 @@
 function ProductCard(props) {
   return (
-    <div className="product-card">
+    <a className="product-card" href={`product?id=${props.id}`}>
       <img src={props.img} alt={props.name} className="product-photo" />
       <div className="product-photo-filter"></div>
       <div className="product-description">
@@ -15,7 +15,7 @@ function ProductCard(props) {
         </div>
         <div className="price">{props.price}$</div>
       </div>
-    </div>
+    </a>
   );
 }
 

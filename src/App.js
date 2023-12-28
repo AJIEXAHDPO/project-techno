@@ -6,6 +6,7 @@ import AppFooter from "./components/AppFooter";
 import MainPage from "./components/MainPage";
 import CatalogPage from "./components/CatalogPage.js"
 import CartPage from "./components/CartPage";
+import ProductPage from "@components/ProductPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="" element={<MainPage />}/>
           <Route path="catalog" element={<CatalogPage/>}/>
           <Route path="cart" element={<CartPage/>}/>
+          <Route path="product" element={<ProductPage/>}/>
         </Routes>
       </BrowserRouter>
       <AppFooter />
