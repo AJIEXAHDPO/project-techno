@@ -15,7 +15,8 @@ header('Access-Control-Allow-Headers: Authorization, Origin, X-Requested-With, A
 $routes = [
     "catalog" => "getFullList",
     "categories" => "getCategories",
-    "brands" => "getFullList"
+    "brands" => "getFullList",
+    "product" => "getFullList"
 ];
 
 $router = new Router($routes);

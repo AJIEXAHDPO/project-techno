@@ -29,13 +29,13 @@ class Router
         return $result;
     }
 
-    private function getUrlQuery(): array
+    private function getUrlQuery($url): array
     {
         $result = [];
-        if (empty($_SERVER['REQUEST_URI'])) 
+        if (empty($_SERVER['REQUEST_URI']))
             return $result;
-
-        $queryStr = parse_url($_SERVER['REQUEST_URI'])['query'];
+        
+        $queryStr = parse_url($url)['query'];
         $queryArray = explode("&", $queryStr);
 
         foreach ($queryArray as $query) {
@@ -48,12 +48,16 @@ class Router
     public function run()
     {
         $uri = $this->getURI();
-        foreach($this->routes as $path => $callback) 
-        {
-            if(preg_match("/^$path/", $uri)) 
-            {
+        $url = $_SERVER['REQUEST_URI'];
+        # echo $this->getUrlQuery($url)['id'];
+        # echo (count($this->getUrlQuery($url)) > 0);
+        
+        foreach ($this->routes as $path => $callback) {
+            if (preg_match("/^$path/", $uri)) {
                 $controller = $this->createController($path);
-                $controllerObject = new $controller();
+                if (count($this->getUrlQuery($url)) > 0) 
+                    $controllerObject = new $controller($this->getUrlQuery($url));
+                else $controllerObject = new $controller();
                 $controllerObject->get();
                 break;
             }
