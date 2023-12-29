@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use Core\Model;
 
 class Product extends Model
@@ -12,10 +13,12 @@ class Product extends Model
         $this->id = $id;
     }
 
-    public function getFullInfo() : Array {
+    public function getFullInfo()
+    {
         $result = $this->db->query(
-        "SELECT product.id, product.name, product.price, product.img, product.quantity
-           FROM product where product.id={$this->id}")->fetchAll(\PDO::FETCH_ASSOC);
+        "SELECT product.id, product.name, product.price, product.img, product.quantity, product.description
+           FROM product where product.id={$this->id}"
+        )->fetch(\PDO::FETCH_ASSOC);
         return $result;
     }
 
