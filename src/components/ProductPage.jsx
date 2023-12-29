@@ -30,7 +30,7 @@ const ProductPage = () => {
             }).catch(e => setPageError(true))
     }, [search]);
 
-    if (pageError) return <div style={{height: 100+"vh"}}><h1>404 PAge not found</h1></div>;
+    if (pageError) return <div style={{ height: 100 + "vh" }}><h1>404 PAge not found</h1></div>;
     return (
         <>
             <h1 className="container product-title">{prod.name}</h1>
@@ -46,7 +46,18 @@ const ProductPage = () => {
                 <ProductInfo />
                 <ProductPriceContainer quantity={prod.quantity} price={prod.price} />
             </div>
-            <div className="container product-page-description">{prod.dscription}</div>
+            <div className="container prod-options-nav">
+                <button className="prod-options-nav-bttn active">Description</button>
+                <button className="prod-options-nav-bttn">Characteristics</button>
+                <button className="prod-options-nav-bttn">Reviews</button>
+            </div>
+            <div className="container product-page-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
         </>
     );
 }
