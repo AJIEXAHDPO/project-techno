@@ -16,7 +16,8 @@ $routes = [
     "catalog" => "getFullList",
     "categories" => "getCategories",
     "brands" => "getFullList",
-    "product" => "getFullList"
+    "product" => "getFullList",
+    "discounts" => "getList"
 ];
 
 $router = new Router($routes);

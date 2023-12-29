@@ -16,10 +16,10 @@ class Router
         array_push($this->routes, new Route($method, $path, $callback));
     }
 
-    private function getURI()
+    private function getURIPath($uri)
     {
-        if (!empty($_SERVER['REQUEST_URI'])) {
-            return trim($_SERVER['REQUEST_URI'], '/');
+        if (!empty($uri)) {
+            return trim($uri, '/');
         }
     }
 
@@ -29,12 +29,15 @@ class Router
         return $result;
     }
 
-    private function getUrlQuery($url): array
+    private function getURIQuery($url): array
     {
         $result = [];
         if (empty($_SERVER['REQUEST_URI']))
             return $result;
         
+        if (!key_exists('query', parse_url($url)))
+            return $result;
+
         $queryStr = parse_url($url)['query'];
         $queryArray = explode("&", $queryStr);
 
@@ -47,17 +50,17 @@ class Router
 
     public function run()
     {
-        $uri = $this->getURI();
-        $url = $_SERVER['REQUEST_URI'];
-        # echo $this->getUrlQuery($url)['id'];
-        # echo (count($this->getUrlQuery($url)) > 0);
+        $uri = $_SERVER['REQUEST_URI'];
+        $uriPath = $this->getURIPath($uri);
+        $uriQuery = $this->getURIQuery($uri);
         
         foreach ($this->routes as $path => $callback) {
-            if (preg_match("/^$path/", $uri)) {
+            if (preg_match("/^$path/", $uriPath)) {
                 $controller = $this->createController($path);
-                if (count($this->getUrlQuery($url)) > 0) 
-                    $controllerObject = new $controller($this->getUrlQuery($url));
+                if (count($uriQuery) > 0) 
+                    $controllerObject = new $controller($uriQuery);
                 else $controllerObject = new $controller();
+                
                 $controllerObject->get();
                 break;
             }
