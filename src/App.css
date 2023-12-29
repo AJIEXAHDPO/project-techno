@@ -238,6 +238,12 @@ header .standard-link {
   justify-content: center;
   align-items: center;
   font-size: 24px;
+  text-decoration: none;
+}
+
+.promo-link:hover {
+  color: #d9d9d9;
+  border-color: #d9d9d9;
 }
 
 .back {
