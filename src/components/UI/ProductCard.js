@@ -1,7 +1,9 @@
 function ProductCard(props) {
   return (
     <a className="product-card" href={`product?id=${props.id}`}>
-      <img src={props.img} alt={props.name} className="product-photo" />
+      <div className="product-photo-container">
+        <img src={props.img} alt={props.name} className="product-photo" />
+      </div>
       <div className="product-photo-filter"></div>
       <div className="product-description">
         <div className="product-name">{props.name}</div>

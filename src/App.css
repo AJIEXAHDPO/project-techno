@@ -346,16 +346,20 @@ h1.container {
 }
 
 .product-photo {
-  padding: 45px 5px;
+  padding: 5px;
+  margin: auto;
+  max-width: 250px;
+  max-height: 250px;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.product-photo-container {
   width: 260px;
   height: 260px;
   display: flex;
+  flex-direction: row;
   box-sizing: border-box;
-  background-image: url("./img/14hq.jpeg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-origin: content-box;
-  background-size: contain;
   align-items: center;
 }
 
