@@ -2,19 +2,19 @@
 
 namespace App\Controllers;
 
+use Core\Controller;
 use App\Models\Category;
 
-class CatalogController
+class CatalogController extends Controller
 {
-    private $category;
     public function __construct()
     {
-        $this->category = new Category("laptops");
+        $this->model = new Category("laptops");
     }
 
     public function get()
     {
-        $jsonData = json_encode($this->category->getFullList());
+        $jsonData = json_encode($this->model->getFullList());
         echo $jsonData;
     }
 }

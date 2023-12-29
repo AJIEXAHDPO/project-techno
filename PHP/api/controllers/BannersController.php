@@ -1,20 +1,20 @@
 <?php
 
 namespace App\Controllers;
+
 use Core\Controller;
 use App\Models\Banners;
 
-class BannersController
+class BannersController extends Controller
 {
-    private $banners;
     public function __construct()
     {
-        $this->banners = new Banners();
+        $this->model = new Banners();
     }
 
-    public function get ()
+    public function get()
     {
-        $jsonData = json_encode($this->banners->getList(4));
+        $jsonData = json_encode($this->model->getList(4));
         echo $jsonData;
     }
 }

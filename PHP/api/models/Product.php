@@ -19,11 +19,13 @@ class Product extends Model
         return $result;
     }
 
-    #public function postToUserCart() {
+    /*
+    public function postToUserCart() {
 
-    #}
+    }
+    */
 
-    public function getDisccounts($count = "*"): array
+    public function getDiscounts($count = "*"): array
     {
         $query = "SELECT product.id,
                     product.name, 
@@ -34,7 +36,7 @@ class Product extends Model
               WHERE product.old_price != 0
            ORDER BY product.popularity DESC";
 
-        if ($count !== "*") $query .= "LIMIT $count";
+        if ($count !== "*") $query .= " LIMIT $count";
 
         $result = $this->db->query($query)->fetchAll(\PDO::FETCH_ASSOC);
         return $result;
