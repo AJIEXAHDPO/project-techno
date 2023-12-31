@@ -8,8 +8,9 @@ import { useState, useEffect } from "react";
 
 const ProductPage = () => {
     const { search } = useLocation();
-    const [prod, setProd] = useState([]);
-    const [img, setImg] = useState([]);
+    const [prod, setProd] = useState({});
+    const [prodDetails, setProdDetails] = useState({});
+    const [img, setImg] = useState({});
     const [pageError, setPageError] = useState(false);
 
     useEffect(() => {
@@ -22,10 +23,11 @@ const ProductPage = () => {
             }
         })
             .then(response => response.json())
-            .then((data) => {
-                console.log(data);
-                setImg(require(`@images/${data.img}`));
-                setProd(data);
+            .then(({mainInfo, characteristics}) => {
+                console.log(mainInfo);
+                setImg(require(`@images/${mainInfo.img}`));
+                setProd(mainInfo);
+                setProdDetails(characteristics);
             }).catch(e => setPageError(true))
     }, [search]);
 
@@ -48,7 +50,7 @@ const ProductPage = () => {
                 <div className="gallery">
                     <img className="slider-big-pic" alt="slider-big-pic" src={img} />
                 </div>
-                <ProductInfo />
+                <ProductInfo info={prodDetails}/>
                 <ProductPriceContainer quantity={prod.quantity} price={prod.price} />
             </div>
             <div className="container prod-options-nav">
