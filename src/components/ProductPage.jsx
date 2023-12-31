@@ -1,8 +1,9 @@
 import ProductInfo from "@components/UI/ProdInfo";
-import ProductPriceContainer from "./UI/ProductPriceContainer";
-import "./ProductPage.css";
+import ProductPriceContainer from "@components/UI/ProductPriceContainer";
+import "@components/ProductPage.css";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import ProductFullInfo from "@components/UI/ProductFullInfo";
 //import { ErrorPage } from "@components/ErrorPage";
 
 
@@ -12,6 +13,7 @@ const ProductPage = () => {
     const [prodDetails, setProdDetails] = useState({});
     const [img, setImg] = useState({});
     const [pageError, setPageError] = useState(false);
+    const [content, setContent] = useState(prod.description);
 
     useEffect(() => {
         console.log(`http://localhost:8000/product${search}`);
@@ -23,11 +25,12 @@ const ProductPage = () => {
             }
         })
             .then(response => response.json())
-            .then(({mainInfo, characteristics}) => {
+            .then(({ mainInfo, characteristics }) => {
                 console.log(mainInfo);
                 setImg(require(`@images/${mainInfo.img}`));
                 setProd(mainInfo);
                 setProdDetails(characteristics);
+                setContent(mainInfo.description);
             }).catch(e => setPageError(true))
     }, [search]);
 
@@ -40,25 +43,38 @@ const ProductPage = () => {
     return (
         <>
             <h1 className="container product-title">{prod.name}</h1>
-            <div className="container product-nav">
-                <a className="prod-nav-link" href="/">Home</a>
-                <a className="prod-nav-link" href="/catalog">Catalog</a>
-                <a className="prod-nav-link" href="/catalog">Laptops</a>
-                <span className="prod-nav-link">{prod.name}</span>
-            </div>
+            <ul className="container product-nav">
+                <li className="prod-nav-link"><a href="/">Home</a></li>
+                <li className="prod-nav-link"><a href="/catalog">Catalog</a></li>
+                <li className="prod-nav-link"><a href="/catalog">Laptops</a></li>
+                <li className="prod-nav-link"><span>{prod.name}</span></li>
+            </ul>
             <div className="container">
                 <div className="gallery">
                     <img className="slider-big-pic" alt="slider-big-pic" src={img} />
                 </div>
-                <ProductInfo info={prodDetails}/>
-                <ProductPriceContainer quantity={prod.quantity} price={prod.price} />
+                <ProductInfo info={prodDetails} />
+                <div>
+                    <ProductPriceContainer quantity={prod.quantity} price={prod.price} />
+                    <div style={{padding: "35px 0 0 35px", display: "flex", flexDirection: "row"}}>FAQ</div>
+                </div>
             </div>
             <div className="container prod-options-nav">
-                <button className="prod-options-nav-bttn active">Description</button>
-                <button className="prod-options-nav-bttn">Characteristics</button>
+                <button className="prod-options-nav-bttn"
+                    onClick={(e) => {
+                        setContent(prod.description);
+                        e.target.classList.add("active");
+                    }}>Description</button>
+
+                <button className="prod-options-nav-bttn"
+                    onClick={(e) => {
+                        setContent(<ProductFullInfo info={prodDetails} />);
+                        e.target.classList.add("active");
+                    }}>Characteristics</button>
+
                 <button className="prod-options-nav-bttn">Reviews</button>
             </div>
-            <div className="container product-page-description">{prod.description}</div>
+            <div className="container product-page-description">{content}</div>
         </>
     );
 }

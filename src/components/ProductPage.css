@@ -102,7 +102,7 @@ h1.product-title {
     font-weight: 700;
 }
 
-.product-nav a:nth-child(2n) {
+.product-nav li:nth-child(2n) {
     color: #3295f4;
 }
 
@@ -139,4 +139,9 @@ h1.product-title {
 
 .prod-nav-link:hover {
     text-decoration: underline 2px #3295f4;
+}
+
+.prod-nav-link::marker {
+    content: url("../img/arrow.svg");
+    width: 12px;
 }
