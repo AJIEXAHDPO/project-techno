@@ -9,7 +9,7 @@ class Product extends Model
     private $id;
     public function __construct($id)
     {
-        $this->connectDB();
+        $this->db = $this->connectDB();
         $this->id = $id;
     }
 
@@ -56,8 +56,15 @@ class Product extends Model
     public function getMainInfo(): array
     {
         $result = $this->db->query(
-            "SELECT product.id, product.name, product.price, product.img, product.quantity, product.description
-               FROM product where product.id={$this->id}"
+            "SELECT product.id, 
+                product.name, 
+                product.price, 
+                product.img, 
+                product.quantity, 
+                product.description, 
+                category.name AS category_name,
+                category.TableName AS category_qname
+               FROM product INNER JOIN category ON category_id=category.id WHERE product.id={$this->id}"
         )->fetch(\PDO::FETCH_ASSOC);
         return $result;
     }

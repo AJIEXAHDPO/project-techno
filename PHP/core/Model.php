@@ -9,6 +9,6 @@ class Model
     protected $db;
     protected function connectDB()
     {
-        $this->db = Connection::get()->connect();
+        return Connection::get()->connect();
     }
 }

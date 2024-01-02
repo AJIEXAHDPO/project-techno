@@ -8,7 +8,7 @@ class Brands extends Model
 {
     public function __construct()
     {
-        $this->connectDB();
+        $this->db = $this->connectDB();
     }
 
     public function getFullList()
