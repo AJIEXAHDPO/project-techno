@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use Core\Model;
 
 class Category extends Model
@@ -10,7 +11,7 @@ class Category extends Model
 
     public function __construct(String $name = 'laptops')
     {
-        $this->connectDB();
+        $this->db = $this->connectDB();
         if ($this->categoryExists($name))
             $this->name = $name;
         else exit("Catalog creation failed: no such category in DB\n");
@@ -30,12 +31,12 @@ class Category extends Model
         return $result;
     }
 
-    public function receiveCategories(): array
+    private function receiveCategories(): array
     {
         $result = $this->db->query("SELECT `name` FROM category;")->fetchAll(\PDO::FETCH_ASSOC);
         return $result;
     }
-    
+
     private function categoryExists($name): bool
     {
         $categories = $this->receiveCategories();
@@ -43,6 +44,13 @@ class Category extends Model
         foreach ($categories as $category) {
             if ($category['name'] === $name) $result = true;
         }
+        return $result;
+    }
+
+    public static function getFullCategoryList(): array
+    {
+        $db = parent::connectDB();
+        $result = $db->query("SELECT `name`, `TableName`, `img` FROM category")->fetchAll(\PDO::FETCH_ASSOC);
         return $result;
     }
 
