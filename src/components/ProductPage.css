@@ -145,3 +145,21 @@ h1.product-title {
     content: url("../img/arrow.svg");
     width: 12px;
 }
+
+.prod-nav-link:first-of-type::marker {
+    content: none;
+}
+
+.prod-nav-link:first-of-type {
+    height: 12px;
+}
+
+.blue-link {
+    color: #3295f4;
+    font-family: "Inter-Bold", Helvetica;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    line-height: 18px;
+    text-decoration: none;
+}

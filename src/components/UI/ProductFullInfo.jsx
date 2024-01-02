@@ -4,7 +4,7 @@ const ProductFullInfo = ({ info }) => {
     return <div style={{display: "flex", 
         flexDirection: "row", 
         flexWrap: "wrap", 
-        justifyContent: "space-around", 
+        justifyContent: "space-between", 
         marginTop: "30px"}}>
         {names.map((name) => <ProductProp name={name} value={info[name]} />)}
     </div>
