@@ -1,6 +1,6 @@
 function ProductCard(props) {
   return (
-    <a className="product-card" href={`product?id=${props.id}`}>
+    <a className="product-card" href={`/product?id=${props.id}`}>
       <div className="product-photo-container">
         <img src={props.img} alt={props.name} className="product-photo" />
       </div>
