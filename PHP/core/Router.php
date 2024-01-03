@@ -58,8 +58,8 @@ class Router
             if (preg_match($route->pathTemplate, $uriPath)) {
                 $controller = "App\\Controllers\\$route->controller";
                 if (count($uriQuery) > 0) 
-                    $controllerObject = new $controller($uriQuery);
-                else $controllerObject = new $controller();
+                    $controllerObject = new $controller($uriPath, $route->callback, $uriQuery);
+                else $controllerObject = new $controller($uriPath, $route->callback);
                 
                 $controllerObject->get();
                 break;

@@ -7,7 +7,7 @@ use App\Database\Connection;
 class Model
 {
     protected $db;
-    protected function connectDB()
+    protected static function connectDB()
     {
         return Connection::get()->connect();
     }

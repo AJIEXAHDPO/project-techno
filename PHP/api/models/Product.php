@@ -9,7 +9,7 @@ class Product extends Model
     private $id;
     public function __construct($id)
     {
-        $this->db = $this->connectDB();
+        $this->db = static::connectDB();
         $this->id = $id;
     }
 
@@ -25,33 +25,15 @@ class Product extends Model
     {
         $queryResult = $this->db->query(
             "SELECT category.TableName 
-            from category 
-            inner join product 
-            on category_id = category.id 
-            where product.id = {$this->id}"
+            FROM category 
+            INNER JOIN product 
+            ON category_id = category.id 
+            WHERE product.id = {$this->id}"
         )->fetch(\PDO::FETCH_ASSOC);
 
         $result = $queryResult["TableName"];
         return $result;
     }
-
-    public function getDiscounts($count = "*"): array
-    {
-        $query = "SELECT product.id,
-                    product.name, 
-                    product.price, 
-                    product.img 
-               FROM product 
-         INNER JOIN category ON category_id = category.id
-              WHERE product.old_price != 0
-           ORDER BY product.popularity DESC";
-
-        if ($count !== "*") $query .= " LIMIT $count";
-
-        $result = $this->db->query($query)->fetchAll(\PDO::FETCH_ASSOC);
-        return $result;
-    }
-
 
     public function getMainInfo(): array
     {

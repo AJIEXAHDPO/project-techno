@@ -8,7 +8,7 @@ class Banners extends Model
 {
     public function __construct()
     {
-        $this->db = $this->connectDB();
+        $this->db = static::connectDB();
     }
 
     public function getList($count)
