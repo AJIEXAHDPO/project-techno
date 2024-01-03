@@ -1,8 +1,6 @@
 <?php
 require 'vendor/autoload.php';
 
-use App\Database\Connection;
-use App\Models\Category;
 use Core\Router;
 
 $categ_name = "laptops";
@@ -13,11 +11,11 @@ header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Allow-Headers: Authorization, Origin, X-Requested-With, Accept, X-PINGOTHER, Content-Type');
 
 $routes = [
-    "catalog" => "getFullList",
-    "categories" => "getCategories",
-    "brands" => "getFullList",
-    "product" => "getFullList",
-    "discounts" => "getList"
+    new Core\Route("GET", "/^catalog$/", "CatalogController", "getFullCategoryList"),
+    new Core\Route("GET", "/^catalog\/\w+/", "CatalogController", "getFullList"),
+    new Core\Route("GET", "/^brands$/", "BrandsController", "getFullList"),
+    new Core\Route("GET", "/^product\?id=[1-9][0-9]*$/", "ProductController", "getFullInfo"),
+    new Core\Route("GET", "/^discounts$/", "DiscountsController", "getDiscountsList"),
 ];
 
 $router = new Router($routes);

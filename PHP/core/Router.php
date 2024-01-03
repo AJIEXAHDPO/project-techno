@@ -54,9 +54,9 @@ class Router
         $uriPath = $this->getURIPath($uri);
         $uriQuery = $this->getURIQuery($uri);
         
-        foreach ($this->routes as $path => $callback) {
-            if (preg_match("/^$path/", $uriPath)) {
-                $controller = $this->createController($path);
+        foreach ($this->routes as $route) {
+            if (preg_match($route->pathTemplate, $uriPath)) {
+                $controller = "App\\Controllers\\$route->controller";
                 if (count($uriQuery) > 0) 
                     $controllerObject = new $controller($uriQuery);
                 else $controllerObject = new $controller();
