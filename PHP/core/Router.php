@@ -11,9 +11,9 @@ class Router
         $this->routes = $routes;
     }
 
-    public function addRoute($method, $path, $callback)
+    public function addRoute($method, $pathTemplate, $controller, $callback)
     {
-        array_push($this->routes, new Route($method, $path, $callback));
+        array_push($this->routes, new Route($method, $pathTemplate, $controller, $callback));
     }
 
     private function getURIPath($uri)
