@@ -3,12 +3,16 @@ import CatalogFilter from "@components/UI/CatalogFilter"
 //import productList from "@data/productList.json";
 import {importImages} from "@functions";
 import {useState, useEffect} from "react";
+import { useLocation } from "react-router-dom";
 
-const CatalogPage = () => {
+const CategoryPage = () => {
   const [productList, setProduclList] = useState([]);
   const [imageImports, setImageImports] = useState([]);
+  const {pathname} = useLocation();
+  const category = pathname.replace("/catalog/", "");
+  console.log(category);
   useEffect(() => {
-    fetch("http://localhost:8000/catalog/", {
+    fetch(`http://localhost:8000/catalog/${category}`, {
       method: "GET",
       mode: "cors",
       headers: {
@@ -21,7 +25,7 @@ const CatalogPage = () => {
       setProduclList(data);
       console.log(data);
     })
-  }, []);
+  }, [category]);
   
   //const imageImports = importImages(productList);
   
@@ -42,4 +46,4 @@ const CatalogPage = () => {
   );
 }
 
-export default CatalogPage;
+export default CategoryPage;

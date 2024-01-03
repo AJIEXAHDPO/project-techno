@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppHeader from "./components/AppHeader";
 import AppFooter from "./components/AppFooter";
 import MainPage from "./components/MainPage";
-import CatalogPage from "./components/CatalogPage.js"
+import CategoryPage from "./components/CategoryPage.js"
 import CartPage from "./components/CartPage";
 import ProductPage from "@components/ProductPage";
 import ErrorPage from "./components/ErrorPage.js";
@@ -17,7 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/catalog" element={<CatalogPage />}>
-            <Route path=":category" element={<CatalogPage />} />
+            <Route path=":category" element={<CategoryPage />} />
           </Route>
           <Route path="/cart" element={<CartPage />} />
           <Route path="/product" element={<ProductPage />} />
