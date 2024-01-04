@@ -8,7 +8,9 @@ const SearchPanel = (props) => {
   const [imageImports, setImageImports] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/catalog`, {
+    const body = document.querySelector("body");
+    body.style.overflow = "hidden";
+    fetch(`http://localhost:8000/catalog/laptops`, {
       method: "GET",
       mode: "cors",
       headers: {
@@ -20,6 +22,7 @@ const SearchPanel = (props) => {
         setImageImports(importImages(data));
         setSearchList(data);
       })
+      return ()=> body.style.overflow = "auto";
   }, []);
 
   const filterResults = (list, template) => {
@@ -45,7 +48,7 @@ const SearchPanel = (props) => {
   return (
     <div className="dropdown-menu-background flex">
       <div className="search-panel">
-        <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", width: 100+"%"}}>
+        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: 100 + "%" }}>
           <input type="text" placeholder="Search" className="input-search"
             onChange={searchChangeHandler} value={inputText} />
           {props.children}
