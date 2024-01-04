@@ -1,7 +1,10 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 function Menu(props) {
-  useEffect(()=> {
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    const body = document.querySelector("body");
+    body.style.overflow = "hidden";
     fetch("http://localhost:8000/catalog", {
       method: "GET",
       mode: "cors",
@@ -9,21 +12,22 @@ function Menu(props) {
         "Content-Type": "application/json; charset=UTF8 "
       }
     })
-    .then(response => response.json())
-    .then(data => console.log(data));
-  })
+      .then(response => response.json())
+      .then(data => setCategories(data));
+      return ()=> body.style.overflow = "auto";
+  }, [])
   return (
     <div style={{ transition: "width 3s" }} className="dropdown-menu-background">
       <div className="dropdown-menu catalog-font">
         {props.children}
         <div className="catalog-menu-point">
-          <div  className="catalog-menu-point-header gray">CATEGORY</div>
-          <div  className="catalog-menu-point-list unfolded">
-            <a href="/catalog/monitors" className="catalog-menu-point-item">Monitors</a>
-            <a href="/catalog/laptops" className="catalog-menu-point-item">Laptops</a>
-            <a href="/catalog/phone" className="catalog-menu-point-item">Smartphone</a>
-            <a href="/catalog/tabs" className="catalog-menu-point-item">Tabs</a>
-            <a href="/catalog/monitors" className="catalog-menu-point-item">Headphones</a>
+          <div className="catalog-menu-point-header gray">CATEGORY</div>
+          <div className="catalog-menu-point-list unfolded">
+            {categories.map(category =>
+              <a href={`/catalog/${category.TableName}`} className="catalog-menu-point-item">
+                {category.name}
+              </a>)
+            }
           </div>
         </div>
         <div className="catalog-menu-point">
