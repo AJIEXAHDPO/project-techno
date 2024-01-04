@@ -15,6 +15,9 @@
             "App\\Database\\": "api/database/",
             "App\\Controllers\\": "api/controllers/",
             "Core\\": "core/"
-        }
+        },
+        "files": [
+            "api/routes/Routes.php"
+        ]
     }
 }
