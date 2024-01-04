@@ -16,7 +16,7 @@ function AppHeader() {
     <button 
       onClick={()=> setMenuVisability(!menuVisability)}
       className="menu-close-bttn">
-      <img src={closeIcon}></img>
+      <img alt="" src={closeIcon}></img>
     </button>
   </Menu>
   
@@ -24,7 +24,7 @@ function AppHeader() {
     <button 
       onClick={()=> setSearchEnabled(!setSearchEnabled)}
       className="menu-close-bttn">
-      <img src={closeIcon}></img>
+      <img alt="" src={closeIcon}></img>
     </button>
   </SearchPanel>
   
