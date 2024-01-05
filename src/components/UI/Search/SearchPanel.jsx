@@ -53,7 +53,7 @@ const SearchPanel = (props) => {
             onChange={searchChangeHandler} value={inputText} />
           {props.children}
         </div>
-        {results}
+        <div className="search-results">{results}</div>
       </div>
     </div>
   );
