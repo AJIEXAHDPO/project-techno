@@ -934,6 +934,12 @@ h3.filter-point {
   padding: 20px 20px 0 30px;
   overflow: auto;
   position: relative;
+  margin: 0 0 0 -350px;
+  transition: margin 0.5s;
+}
+
+.dropdown-menu.unfold {
+  margin-left: 0;
 }
 
 .dropdown-menu-background.flex {
@@ -1103,9 +1109,16 @@ h3.filter-point {
   padding-top: 10px;
   width: 500px;
   height: 350px;
-  overflow: auto;
+  overflow: hidden;
   padding: 50px 70px;
   box-sizing: padding-box;
+}
+
+.search-results {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  overflow: auto;
 }
 
 .search-panel .search-product-card:hover {

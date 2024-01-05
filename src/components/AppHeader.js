@@ -12,13 +12,7 @@ function AppHeader() {
     isLoggedIn: false,
   }
   
-  const menu = <Menu>
-    <button 
-      onClick={()=> setMenuVisability(!menuVisability)}
-      className="menu-close-bttn">
-      <img alt="" src={closeIcon}></img>
-    </button>
-  </Menu>
+  const menu = <Menu closeCallback={setMenuVisability} />
   
   const search = <SearchPanel>
     <button 
