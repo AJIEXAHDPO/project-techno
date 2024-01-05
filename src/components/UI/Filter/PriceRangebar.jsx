@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import RangeBar from "./boof";
 
 const PriceRangebar = ({ minPrice, maxPrice }) => {
     return (
