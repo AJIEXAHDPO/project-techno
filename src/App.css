@@ -429,6 +429,16 @@ h1.container {
   color: #222222;
 }
 
+.price-min, 
+.price-max {
+  width: 50px
+}
+
+.price-min::after, 
+.price-max::after {
+  content: "$";
+}
+
 .star {
   width: 15px;
   height: 15px;
@@ -768,6 +778,9 @@ select.sort-by {
 }
 
 .catalog-bttn {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   width: 195px;
   height: 50px;
   padding-left: 30px;
