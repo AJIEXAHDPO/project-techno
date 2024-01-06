@@ -768,6 +768,7 @@ button.sort-by {
   background-image: url("./img/Arrows.svg");
   background-repeat: no-repeat;
   background-position: right 8px center;
+  padding-bottom: 0px;
 }
 
 select.sort-by {
@@ -883,6 +884,11 @@ select.sort-by {
   margin-bottom: 20px;
 }
 
+.filter-point {
+  display: flex;
+  align-items: flex-end;
+}
+
 h3.filter-point {
   grid-column-start: 1;
   grid-column-end: 3;
@@ -893,7 +899,13 @@ h3.filter-point {
 .filter-point label {
   margin-left: 7px;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.filter-point input[type=checkbox] {
+  width: 18px;
+  height: 18px;
 }
 
 .container.catalog-offers {
@@ -1190,6 +1202,8 @@ h3.filter-point {
 .category-list {
   min-height: 100vh;
   margin-bottom: 80px;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
 }
 
 .category-card img {

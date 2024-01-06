@@ -36,14 +36,19 @@ const CategoryPage = () => {
         <li className="prod-nav-link"><a href="/catalog">Catalog</a></li>
         <li className="prod-nav-link"><a href={`/catalog/${category}`}>{category}</a></li>
       </ul>
-      <h1 className="container" style={{ width: "1140px", marginBottom: "20px" }}>
-        {`${category.replace(/_/g, " ")} (${productList.length} product${productList.length!==1? "s": ""})`}
+      <h1 className="container" style={{
+        width: "1140px",
+        marginBottom: "20px",
+        borderBottom: "1px solid #d9d9d9",
+        paddingBottom: "10px",
+      }}>
+        {`${category.replace(/_/g, " ")} (${productList.length} product${productList.length !== 1 ? "s" : ""})`}
       </h1>
       <div className="container">
         <CatalogFilter />
         <div className="catalog">
 
-          <div className="filter-main container">
+          <div className="filter-main container" style={{ alignItems: "flex-start", border: "none" }}>
             <div>
               <button className="sort-by">Sort By</button>
               <select name="" id="" className="sort-by">
@@ -65,6 +70,8 @@ const CategoryPage = () => {
               img={imageImports[product.img]}
             />
           )}
+          {productList.length === 0 &&
+            <h2 className="container" style={{textTransform: "capitalize"}}>No reasults for your request</h2>}
         </div>
       </div>
     </>
