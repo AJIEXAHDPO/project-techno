@@ -44,7 +44,7 @@ function AppHeader() {
             />
             <button className="search-bttn"></button>
             <button className="login"><div>{(currentUser.isLoggedIn ?? false)?"Profle":"Log in"}</div></button>
-            <a className="header-cart" href="cart"><div>Cart</div></a>
+            <a className="header-cart" href="/cart"><div>Cart</div></a>
             <button className="options"></button>
           </div>
         </div>
