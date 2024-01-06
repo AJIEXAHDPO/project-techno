@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 
 const PriceRangebar = ({ minPrice, maxPrice }) => {
+    const rangebarWidth= 260;
     const [priceMin, setPriceMin] = useState(minPrice);
     const [priceMax, setPriceMax] = useState(maxPrice);
     const [thumb1Position, setThumb1Position] = useState(0);
-    const [thumb2Position, setThumb2Position] = useState(345 - 7);
+    const [thumb2Position, setThumb2Position] = useState(rangebarWidth - 7);
 
     useEffect(() => {
         const promise1 = new Promise(resolve => resolve());
@@ -37,7 +38,7 @@ const PriceRangebar = ({ minPrice, maxPrice }) => {
                                 if (calculatedPosition < 0) calculatedPosition = 0;
                                 else if (calculatedPosition > thumb2Position - 7) calculatedPosition = thumb2Position - 7;
                                 setThumb1Position(calculatedPosition);
-                                setPriceMin(Math.trunc(minPrice + (maxPrice - minPrice) / (345 - 7) * calculatedPosition));
+                                setPriceMin(Math.trunc(minPrice + (maxPrice - minPrice) / (rangebarWidth - 7) * calculatedPosition));
                             }
                             document.onmouseup = () => {
                                 document.onmousemove = null;
@@ -53,10 +54,10 @@ const PriceRangebar = ({ minPrice, maxPrice }) => {
                             const initialThumbPosition = e.pageX;
                             document.onmousemove = (event) => {
                                 let calculatedPosition = thumb2Position + (event.pageX - initialThumbPosition);
-                                if (calculatedPosition > 345 - 7) calculatedPosition = 345 - 7;
+                                if (calculatedPosition > rangebarWidth - 7) calculatedPosition = rangebarWidth - 7;
                                 else if (calculatedPosition < thumb1Position + 7) calculatedPosition = thumb1Position + 7;
                                 setThumb2Position(calculatedPosition);
-                                setPriceMax(Math.trunc(minPrice + (maxPrice - minPrice) / (345 -7) * calculatedPosition));
+                                setPriceMax(Math.trunc(minPrice + (maxPrice - minPrice) / (rangebarWidth - 7) * calculatedPosition));
                             }
                             document.onmouseup = () => {
                                 document.onmousemove = null;

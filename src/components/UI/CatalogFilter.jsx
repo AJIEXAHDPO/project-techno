@@ -16,28 +16,11 @@ const CatalogFilter = (props) => {
   }
   return (
     <>
-      <h1 className="container">Laptops</h1>
-
-      <form className="container filter">
-        <select className="catalog-bttn">
-          <option value="Laptops">laptops</option>
-          <option value="Laptops">Mice</option>
-        </select>
-        <PriceRangebar minPrice={221} maxPrice={2000}/>
+      <form className="filter">
+        <PriceRangebar minPrice={221} maxPrice={2000} />
         {searchPropsList}
         <div className="filter-main">
-          <div>
-            <button className="sort-by">Sort By</button>
-            <select name="" id="" className="sort-by">
-              <option value="Price Desc">Price ▼</option>
-              <option value="Price Asc">Price ▲</option>
-              <option value="Name">Name</option>
-            </select>
-          </div>
-          <div>
-            <span className="more-params">More Parameters</span>
-            <button className="apply-all">Apply All</button>
-          </div>
+          <button className="apply-all">Apply All</button>
         </div>
       </form>
     </>
