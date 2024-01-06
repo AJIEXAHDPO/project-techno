@@ -850,11 +850,6 @@ select.sort-by {
   transform: translateX(7px);
 }
 
-.r2 {
-  transform: translateX(100px);
-  background-color: #3295f4;
-}
-
 .range {
   min-width: 10px;
 }
