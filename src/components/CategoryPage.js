@@ -8,11 +8,11 @@ import { useLocation } from "react-router-dom";
 const CategoryPage = () => {
   const [productList, setProduclList] = useState([]);
   const [imageImports, setImageImports] = useState([]);
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
   const category = pathname.replace("/catalog/", "");
   console.log(category);
   useEffect(() => {
-    fetch(`http://localhost:8000/catalog/${category}`, {
+    fetch(`http://localhost:8000/catalog/${category}${search}`, {
       method: "GET",
       mode: "cors",
       headers: {
