@@ -73,5 +73,35 @@ class Product extends Model
     public function postToUserCart() {
         
     }
-    */
+    
+    public static function createProduct($props)
+    {
+        $db = static::connectDB();
+        $id = $db->query(
+            "SELECT max(id) FROM product;"
+        )->fetch(\PDO::FETCH_ASSOC)["id"];
+        $category_id = $db->query(
+            "SELECT id 
+            FROM category 
+            WHERE TableName = {$props['category']}"
+        )->fetch(\PDO::FETCH_ASSOC)["id"] + 1;
+        $old_price_name = $props['old_price'] ? ' `old_price`,' : "";
+        $old_price = $props['old_price'] ? "{$props['old_price']}, " : "";
+        $db->query("INSERT INTO `techno`.`product` 
+            (`id`, `name`, `price`, `quantity`, `category_id`, `img`, `popularity`,$old_price_name `description`, `brand`) VALUES 
+            (
+                $id, 
+                {$props['name']}, 
+                {$props['price']}, 
+                {$props['quantity']}, 
+                $category_id, 
+                {$props['img']}, 
+                {$props['popularity']}, 
+                $old_price
+                {$props['description']}, 
+                {$props['brand']}
+            );
+        ");
+        $db->query("INSERT INTO {$props['category']} (`id` )");
+    }*/
 }
