@@ -18,14 +18,14 @@ const CategoryPage = () => {
       headers: {
         "Content-Type": "application/json; charset=UTF8",
       }
-    })
+    }, [search])
       .then(response => response.json())
       .then(data => {
         setImageImports(importImages(data));
         setProduclList(data);
         console.log(data);
       })
-  }, [category]);
+  }, [category, search]);
 
   //const imageImports = importImages(productList);
 
