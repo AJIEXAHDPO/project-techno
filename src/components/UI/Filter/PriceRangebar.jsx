@@ -45,6 +45,21 @@ const PriceRangebar = ({ minPrice, maxPrice }) => {
                                 document.onmouseup = null;
                             }
                         }}
+                        onTouchStart={e => {
+                            document.ondragstart = null;
+                            const initialThumbPosition = e.touches[0].pageX;
+                            document.ontouchmove = (event) => {
+                                let calculatedPosition = thumb1Position + (event.touches[0].pageX - initialThumbPosition);
+                                if (calculatedPosition < 0) calculatedPosition = 0;
+                                else if (calculatedPosition > thumb2Position - 7) calculatedPosition = thumb2Position - 7;
+                                setThumb1Position(calculatedPosition);
+                                setPriceMin(Math.trunc(minPrice + (maxPrice - minPrice) / (rangebarWidth - 7) * calculatedPosition));
+                            }
+                            document.ontouchend = () => {
+                                document.ontouchmove = null;
+                                document.ontouchend = null;
+                            }
+                        }}
                     ></div>
                     <div className="rangebar-interval"></div>
                     <div
@@ -62,6 +77,21 @@ const PriceRangebar = ({ minPrice, maxPrice }) => {
                             document.onmouseup = () => {
                                 document.onmousemove = null;
                                 document.onmouseup = null;
+                            }
+                        }}
+                        onTouchStart={e => {
+                            document.ondragstart = null;
+                            const initialThumbPosition = e.touches[0].pageX;
+                            document.ontouchmove = (event) => {
+                                let calculatedPosition = thumb2Position + (event.touches[0].pageX - initialThumbPosition);
+                                if (calculatedPosition > rangebarWidth - 7) calculatedPosition = rangebarWidth - 7;
+                                else if (calculatedPosition < thumb1Position + 7) calculatedPosition = thumb1Position + 7;
+                                setThumb2Position(calculatedPosition);
+                                setPriceMax(Math.trunc(minPrice + (maxPrice - minPrice) / (rangebarWidth - 7) * calculatedPosition));
+                            }
+                            document.ontouchend = () => {
+                                document.ontouchmove = null;
+                                document.ontouchend = null;
                             }
                         }}
                     ></div>
