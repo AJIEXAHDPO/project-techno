@@ -9,7 +9,7 @@ const CatalogFilter = (props) => {
     searchPropsList.push(
       <FilterSection title={key}>
         {searchData[key].map(
-          (elem) => <FilterPoint value={elem.value} count={elem.count} />
+          (elem) => <FilterPoint name={key} value={elem.value} count={elem.count} />
         )}
       </FilterSection>
     );
