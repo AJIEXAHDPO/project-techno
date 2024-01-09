@@ -7,7 +7,8 @@ use App\Models\Category;
 
 class CatalogController extends Controller
 {
-    public function __construct($uriPath, $callback, $uriQuery = "")
+    private $uriQuery;
+    public function __construct($uriPath, $callback, $uriQuery = [])
     {
         if ($uriPath !== "catalog" and $uriPath!=="discounts") {
             $paterns = Array();
@@ -23,12 +24,13 @@ class CatalogController extends Controller
         }
         else $this->model = null;
         $this->callback = $callback;
+        $this->uriQuery = $uriQuery;
     }
 
     public function get()
     {
         $callback = $this->callback;
-        $jsonData = json_encode(is_null($this->model) ? Category::$callback() : $this->model->getFullList());
+        $jsonData = json_encode(is_null($this->model) ? Category::$callback() : $this->model->$callback($this->uriQuery));
         echo $jsonData;
     }
 }

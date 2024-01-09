@@ -82,4 +82,14 @@ class Category extends Model
     {
         
     }*/
+
+    private function parseQuery ($query): array {
+        $keys = array_keys($query);
+        $result = [];
+        foreach($keys as $key) {
+            $normalized_key = str_replace($query, "-", " ");
+            $result[$normalized_key] = str_replace("+", " ", $query[$key]);
+        }
+        return $result;
+    }
 }
