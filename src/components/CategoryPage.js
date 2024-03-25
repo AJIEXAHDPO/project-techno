@@ -1,5 +1,7 @@
 import ProductCard from "@components/UI/ProductCard";
-import CatalogFilter from "@components/UI/CatalogFilter"
+import CatalogFilter from "@components/UI/CatalogFilter";
+import LoadingPage from "@components/LoadingPage";
+import ErrorPage from "@components/ErrorPage";
 //import productList from "@data/productList.json";
 import { importImages } from "@functions";
 import { useState, useEffect } from "react";
@@ -8,7 +10,11 @@ import { useLocation } from "react-router-dom";
 const CategoryPage = () => {
   const [productList, setProduclList] = useState([]);
   const [imageImports, setImageImports] = useState([]);
+  const [categoryParams, setCategoryParams] = useState({});
+  const [priceRange, setPriceRange] = useState({ price_min: 0, price_max: 1 });
   const { pathname, search } = useLocation();
+  const [isLoading, setLoading] = useState(true);
+  const [isError, setError] = useState(false);
   const category = pathname.replace("/catalog/", "");
   console.log(category);
   useEffect(() => {
@@ -20,15 +26,25 @@ const CategoryPage = () => {
       }
     }, [search])
       .then(response => response.json())
-      .then(data => {
+      .then(({ data, filterProps, priceRange }) => {
         setImageImports(importImages(data));
+        setCategoryParams(filterProps);
         setProduclList(data);
+        setPriceRange(priceRange);
         console.log(data);
+        console.log(filterProps);
       })
+      .catch(e => {
+        setError(true);
+        console.error(e.message);
+      })
+      .then(() => setLoading(false));
   }, [category, search]);
 
   //const imageImports = importImages(productList);
 
+  if (isLoading) return <LoadingPage />;
+  if (isError) return <ErrorPage />;
   return (
     <>
       <ul className="container product-nav">
@@ -44,11 +60,13 @@ const CategoryPage = () => {
       }}>
         {`${category.replace(/_/g, " ")} (${productList.length} product${productList.length !== 1 ? "s" : ""})`}
       </h1>
-      <div className="container">
-        <CatalogFilter />
-        <div className="catalog">
-
-          <div className="filter-main container" style={{ alignItems: "flex-start", border: "none" }}>
+      <div className="container catalog-body">
+        <CatalogFilter params={categoryParams} priceRange={priceRange} />
+        <div style={{
+          gridColumnStart: 2,
+          gridColumnEnd: 5,
+        }}>
+          <div className="filter-main" style={{ alignItems: "flex-start", border: "none" }}>
             <div>
               <button className="sort-by">Sort By</button>
               <select name="" id="" className="sort-by">
@@ -62,16 +80,20 @@ const CategoryPage = () => {
               <button className="apply-all">Apply All</button>
             </div>
           </div>
-          {productList.map(
-            product => <ProductCard
-              id={product.id}
-              name={product.name}
-              price={product.price}
-              img={imageImports[product.img]}
-            />
-          )}
-          {productList.length === 0 &&
-            <h2 className="container" style={{textTransform: "capitalize"}}>No reasults for your request</h2>}
+          <div className="catalog">
+
+            {productList.map(
+              product => <ProductCard
+                key={product.id}
+                id={product.id}
+                name={product.name}
+                price={product.price}
+                img={imageImports[product.img]}
+              />
+            )}
+            {productList.length === 0 &&
+              <h2 className="container" style={{ textTransform: "capitalize" }}>No reasults for your request</h2>}
+          </div>
         </div>
       </div>
     </>
