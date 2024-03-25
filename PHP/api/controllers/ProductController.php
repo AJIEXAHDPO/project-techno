@@ -10,7 +10,7 @@ class ProductController extends Controller
     public function __construct($uriPath, $callback, $uriQuery)
     {
         if (!array_key_exists('id', $uriQuery)) exit("No id in query");
-        $id = $uriQuery["id"];
+        $id = $uriQuery["id"][0];
         $this->model = new Product($id);
         $this->callback = $callback;
     }

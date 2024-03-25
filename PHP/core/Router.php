@@ -43,7 +43,8 @@ class Router
 
         foreach ($queryArray as $query) {
             $exploded = explode("=", $query);
-            $result[$exploded[0]] = $exploded[1];
+            if (!array_key_exists($exploded[0], $result)) $result[$exploded[0]] = [];
+            array_push($result[$exploded[0]], $exploded[1]);
         }
         return $result;
     }
