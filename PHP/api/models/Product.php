@@ -104,4 +104,16 @@ class Product extends Model
         ");
         $db->query("INSERT INTO {$props['category']} (`id` )");
     }*/
+
+    public function getSearchResults($search): array
+    {
+        $result = $this->db->query(
+            "SELECT * 
+            FROM product 
+            where product.name 
+            like $search
+            limit 10"
+        )->fetch(\PDO::FETCH_ASSOC);
+        return $result;
+    }
 }
