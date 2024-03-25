@@ -143,18 +143,22 @@ header,
 
 #smart-search {
   width: 300px;
-  height: 36px;
+  height: 42px;
   background-color: #a5a5a5;
-  border-radius: 5px;
+  border-radius: 16px;
   border: none;
   padding-left: 10px;
   font-size: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  color: #444;
 }
 
 .search-bttn {
-  position: absolute;
-  width: 48px;
-  height: 48px;
+  width: 34px;
+  height: 34px;
   background-image: url("./img/Union (1).svg");
   background-position: center;
   background-repeat: no-repeat;
@@ -162,7 +166,6 @@ header,
   border-radius: 50%;
   border: none;
   background-size: 22px 22px;
-  margin-left: 527px;
 }
 
 .menu-bttn:active,
@@ -173,9 +176,11 @@ header,
   background-color: #555;
 }
 
+/*
 .search-bttn:active {
   background-color: rgba(73, 73, 73, 0.3);
 }
+*/
 
 input {
   outline: none;
@@ -736,9 +741,14 @@ address {
   margin-bottom: 300px
 }
 
+
+@media (width < 1140px) {
+  .filter {
+    display: none;
+  }
+}
+
 .filter-main {
-  grid-column-start: 1;
-  grid-column-end: 4;
   height: 60px;
   display: flex;
   flex-direction: row;
@@ -882,9 +892,10 @@ select.sort-by {
 }
 
 .filter-section {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
   margin-bottom: 20px;
+  gap: 0 5px;
 }
 
 .filter-point {
@@ -893,10 +904,10 @@ select.sort-by {
 }
 
 h3.filter-point {
-  grid-column-start: 1;
-  grid-column-end: 3;
+  width: 100%;
   font-weight: 500;
   color: #000;
+  word-spacing: 3px;
 }
 
 .filter-point label {
@@ -904,6 +915,8 @@ h3.filter-point {
   font-size: 12px;
   font-weight: 500;
   margin-bottom: 2px;
+  width: max-content;
+  max-width: 100%;
 }
 
 .filter-point input[type=checkbox] {
@@ -1155,7 +1168,7 @@ h3.filter-point {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .search-panel .search-product-card:hover {
@@ -1220,11 +1233,46 @@ h3.filter-point {
 }
 
 .catalog {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 260px);
+  grid-auto-rows: max-content;
+  grid-auto-columns: max-content;
   min-height: 50vh;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-content: flex-start;
-  max-width: 850px;
+  gap: auto;
+  /*align-content: flex-start;*/
+}
+
+.catalog-body {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotating {
+  animation: rotation 2s linear infinite;
+}
+
+.loading-icon {
+  width: 36px;
+  height: 36px;
+}
+
+.content-center {
+  justify-content: center;
+}
+
+.filter-point input:disabled+label {
+  color: #a5a5a5;
 }

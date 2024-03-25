@@ -15,7 +15,7 @@ function ProductCard(props) {
           <div className="star"></div>
           <div className="star"></div>
         </div>
-        <div className="price">{props.price}$</div>
+        <div className="price">{props.price}{props.price< 100? ".00": ""} $</div>
       </div>
     </a>
   );
