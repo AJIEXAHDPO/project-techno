@@ -7,14 +7,14 @@
         {"value": "64 GB", "count": 2},
         {"value": "3 GB", "count": 2}
     ],
-    "SSD": [
+    "Storage Size": [
         {"value": "128 GB", "count": 2},
         {"value": "256 GB", "count": 2},
         {"value": "512 GB", "count": 2},
         {"value": "1 TB", "count": 2},
         {"value": "2 TB", "count": 2}
     ],
-    "Screen": [
+    "Screen Resolution": [
         {"value": "1920 x 1080", "count": 2},
         {"value": "2560 x 1440", "count": 2},
         {"value": "1366 x 768", "count": 2},
