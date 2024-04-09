@@ -3,37 +3,37 @@ import InfoLinks from "./UI/InfoLinks";
 
 function AppFooter() {
   const linksList1 = [
-    {name: "About", href: "",},
-    {name: "News", href: "",},
-    {name: "Partners", href: "",},
-    {name: "Jobs", href: "",},
-    {name: "Privacy Policy", href: "",},
-    {name: "Personal Information", href: "",},
-    {name: "Sales Rules", href: "",},
-    {name: "Website Terms of Use", href: "",},
-    {name: "Service centers", href: "",},
+    { id: 1, name: "About", href: "", },
+    { id: 2, name: "News", href: "", },
+    { id: 3, name: "Partners", href: "", },
+    { id: 4, name: "Jobs", href: "", },
+    { id: 5, name: "Privacy Policy", href: "", },
+    { id: 6, name: "Personal Information", href: "", },
+    { id: 7, name: "Sales Rules", href: "", },
+    { id: 8, name: "Website Terms of Use", href: "", },
+    { id: 9, name: "Service centers", href: "", },
   ];
-  
+
   const linksList2 = [
-    {name: "How to place an order", href: "",},
-    {name: "Payment Methods", href: "",},
-    {name: "Credits", href: "",},
-    {name: "Delivery", href: "",},
-    {name: "Order status", href: "",},
-    {name: "Exchange, return, guar", href: "",},
-    {name: "Checking Repair Status", href: "",},
+    { id: 1, name: "How to place an order", href: "", },
+    { id: 2, name: "Payment Methods", href: "", },
+    { id: 3, name: "Credits", href: "", },
+    { id: 4, name: "Delivery", href: "", },
+    { id: 5, name: "Order status", href: "", },
+    { id: 6, name: "Exchange, return, guar", href: "", },
+    { id: 7, name: "Checking Repair Status", href: "", },
   ];
-  
+
   const linksList3 = [
-    {name: "For legal entities", href: "",},
-    {name: "Account verification", href: "",},
-    {name: "Corporate departments", href: "",},
-    {name: "Gift cards", href: "",},
-    {name: "bonus program", href: "",},
-    {name: "Help", href: "",},
-    {name: "Feedback", href: "",},
+    { id: 1, name: "For legal entities", href: "", },
+    { id: 2, name: "Account verification", href: "", },
+    { id: 3, name: "Corporate departments", href: "", },
+    { id: 4, name: "Gift cards", href: "", },
+    { id: 5, name: "bonus program", href: "", },
+    { id: 6, name: "Help", href: "", },
+    { id: 7, name: "Feedback", href: "", },
   ];
-  
+
   return (
     <footer>
       <div className="container">
