@@ -18,7 +18,7 @@ const SearchPanel = (props) => {
       }
     })
       .then(response => response.json())
-      .then((data) => {
+      .then(({data}) => {
         setImageImports(importImages(data));
         setSearchList(data);
       })
