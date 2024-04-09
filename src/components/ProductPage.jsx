@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import ProductFullInfo from "@components/UI/ProductFullInfo";
 import ErrorPage from "@components/ErrorPage";
 import { importImage } from "@functions";
+import LoadingPage from "./LoadingPage";
 
 
 const ProductPage = () => {
@@ -13,7 +14,8 @@ const ProductPage = () => {
     const [prod, setProd] = useState({});
     const [prodDetails, setProdDetails] = useState({});
     const [img, setImg] = useState({});
-    const [pageError, setPageError] = useState(false);
+    const [isLoading, setLoading] = useState(true);
+    const [isError, setError] = useState(false);
     const [content, setContent] = useState(prod.description);
     const [buttonActive, setButtonActive] = useState();
 
@@ -33,21 +35,26 @@ const ProductPage = () => {
                 setProd(mainInfo);
                 setProdDetails(characteristics);
                 setContent(mainInfo.description);
-            }).catch(e => setPageError(true))
+            })
+            .catch(e => setError(true))
+            .then(()=> setLoading(false))
     }, [search]);
 
     useEffect(() => {
-        const targetBttn = buttonActive? 
-            buttonActive: 
-            document.querySelector(".prod-options-nav-bttn");
+        if (isLoading === false && isError === false) {
+            const targetBttn = buttonActive ?
+                buttonActive :
+                document.querySelector(".prod-options-nav-bttn");
             //alert(targetBttn);
-        targetBttn.classList.add("active");
-        return ()=> {
-            targetBttn.classList.remove("active");
+            targetBttn.classList.add("active");
+            return () => {
+                targetBttn.classList.remove("active");
+            }
         }
-    }, [buttonActive, content]);
+    }, [buttonActive, content, isError, isLoading]);
 
-    if (pageError) return <ErrorPage />
+    if (isLoading) return <LoadingPage />
+    if (isError) return <ErrorPage />
     return (
         <>
             <h1 className="container product-title">{prod.name}</h1>
@@ -65,9 +72,9 @@ const ProductPage = () => {
                 <div>
                     <ProductPriceContainer quantity={prod.quantity} price={prod.price} />
                     <div style={{ padding: "35px 0 0 35px", display: "flex", flexDirection: "row" }}>FAQ</div>
-                    <div style={{ padding: "10px 0 0 35px", display: "flex", flexDirection: "row" }} 
+                    <div style={{ padding: "10px 0 0 35px", display: "flex", flexDirection: "row" }}
                         className="blue-link">Return of Goods</div>
-                    <div style={{ padding: "10px 0 0 35px", display: "flex", flexDirection: "row" }} 
+                    <div style={{ padding: "10px 0 0 35px", display: "flex", flexDirection: "row" }}
                         className="blue-link">Shipping</div>
                 </div>
             </div>
